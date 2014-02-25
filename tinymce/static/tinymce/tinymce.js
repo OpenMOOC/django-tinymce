@@ -30083,7 +30083,7 @@ define("tinymce/ui/Button", [
 			return (
 				'<div id="' + id + '" class="' + self.classes() + '" tabindex="-1">' +
 					'<button role="presentation" type="button" tabindex="-1">' +
-						(icon ? '<i class="' + icon + '"' + image + '></i>' : '') +
+						(icon ? '<span class="' + icon + '"' + image + '></span>' : '') +
 						(self._text ? (icon ? '\u00a0' : '') + self.encode(self._text) : '') +
 					'</button>' +
 				'</div>'
@@ -30271,7 +30271,7 @@ define("tinymce/ui/Checkbox", [
 
 			return (
 				'<div id="' + id + '" class="' + self.classes() + '" unselectable="on" aria-labelledby="' + id + '-al" tabindex="-1">' +
-					'<i class="' + prefix + 'ico ' + prefix + 'i-checkbox"></i>' +
+					'<span class="' + prefix + 'ico ' + prefix + 'i-checkbox"></span>' +
 					'<span id="' + id +'-al" class="' + prefix + 'label">' + self.encode(self._text) + '</span>' +
 				'</div>'
 			);
@@ -30449,12 +30449,12 @@ define("tinymce/ui/ColorButton", [
 			return (
 				'<div id="' + id + '" class="' + self.classes() + '">' +
 					'<button role="presentation" hidefocus type="button" tabindex="-1">' +
-						(icon ? '<i class="' + icon + '"' + image + '></i>' : '') +
+						(icon ? '<span class="' + icon + '"' + image + '></span>' : '') +
 						'<span id="' + id + '-preview" class="' + prefix + 'preview"></span>' +
 						(self._text ? (icon ? ' ' : '') + (self._text) : '') +
 					'</button>' +
 					'<button type="button" class="' + prefix + 'open" hidefocus tabindex="-1">' +
-						' <i class="' + prefix + 'caret"></i>' +
+						' <span class="' + prefix + 'caret"></span>' +
 					'</button>' +
 				'</div>'
 			);
@@ -30797,7 +30797,7 @@ define("tinymce/ui/ComboBox", [
 				openBtnHtml = (
 					'<div id="' + id + '-open" class="' + prefix + 'btn ' + prefix + 'open" tabIndex="-1">' +
 						'<button id="' + id + '-action" type="button" hidefocus tabindex="-1">' +
-							(icon != 'caret' ? '<i class="' + icon + '"></i>' : '<i class="' + prefix + 'caret"></i>') +
+							(icon != 'caret' ? '<span class="' + icon + '"></span>' : '<span class="' + prefix + 'caret"></span>') +
 							(text ? (icon ? ' ' : '') + text : '') +
 						'</button>' +
 					'</div>'
@@ -33085,9 +33085,9 @@ define("tinymce/ui/MenuButton", [
 			return (
 				'<div id="' + id + '" class="' + self.classes() + '" tabindex="-1">' +
 					'<button id="' + id + '-open" role="presentation" type="button" tabindex="-1">' +
-						(icon ? '<i class="' + icon + '"></i>' : '') +
+						(icon ? '<span class="' + icon + '"></span>' : '') +
 						'<span>' + (self._text ? (icon ? '\u00a0' : '') + self.encode(self._text) : '') + '</span>' +
-						' <i class="' + prefix + 'caret"></i>' +
+						' <span class="' + prefix + 'caret"></span>' +
 					'</button>' +
 				'</div>'
 			);
@@ -33799,7 +33799,7 @@ define("tinymce/ui/ResizeHandle", [
 
 			return (
 				'<div id="' + self._id + '" class="' + self.classes() + '">' +
-					'<i class="' + prefix + 'ico ' + prefix + 'i-resize"></i>' +
+					'<span class="' + prefix + 'ico ' + prefix + 'i-resize"></span>' +
 				'</div>'
 			);
 		},
@@ -33963,13 +33963,13 @@ define("tinymce/ui/SplitButton", [
 			return (
 				'<div id="' + id + '" class="' + self.classes() + '">' +
 					'<button type="button" hidefocus tabindex="-1">' +
-						(icon ? '<i class="' + icon + '"></i>' : '') +
+						(icon ? '<span class="' + icon + '"></span>' : '') +
 						(self._text ? (icon ? ' ' : '') + self._text : '') +
 					'</button>' +
 					'<button type="button" class="' + prefix + 'open" hidefocus tabindex="-1">' +
-						//(icon ? '<i class="' + icon + '"></i>' : '') +
+						//(icon ? '<span class="' + icon + '"></span>' : '') +
 						(self._menuBtnText ? (icon ? '\u00a0' : '') + self._menuBtnText : '') +
-						' <i class="' + prefix + 'caret"></i>' +
+						' <span class="' + prefix + 'caret"></span>' +
 					'</button>' +
 				'</div>'
 			);
