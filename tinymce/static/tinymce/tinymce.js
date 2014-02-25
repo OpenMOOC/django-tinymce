@@ -33530,10 +33530,9 @@ define("tinymce/ui/MenuItem", [
 			}
 
 			icon = prefix + 'ico ' + prefix + 'i-' + (self.settings.icon || 'none');
-
 			return (
 				'<div id="' + id + '" class="' + self.classes() + '" tabindex="-1">' +
-					(text !== '-' ? '<i class="' + icon + '"' + image + '></i>&nbsp;' : '') +
+					(text !== '-' ? '<span class="' + icon + '"' + image + '></span>&nbsp;' : '') +
 					(text !== '-' ? '<span id="' + id + '-text" class="' + prefix + 'text">' + text + '</span>' : '') +
 					(shortcut ? '<div id="' + id + '-shortcut" class="' + prefix + 'menu-shortcut">' +
 					 shortcut + '</div>' : '') +
