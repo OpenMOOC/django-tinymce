@@ -35,8 +35,8 @@
 
 // Default font
 @font-family:                    "Helvetica Neue", Helvetica, Arial, sans-serif;
-@font-size:                      14px;
-@line-height:                    20px;
+@font-size:                      1em;
+@line-height:                    1.2em;
 @has-gradients:                  true;
 @has-radius:                     true;
 @has-boxshadow:                  true;
@@ -109,7 +109,7 @@
 // Tooltip
 @tooltip-bg:                     #000;
 @tooltip-text:                   white;
-@tooltip-font-size:              11px;
+@tooltip-font-size:              0.8em;
 
 // Window
 @window-border:                  #c5c5c5;
@@ -123,7 +123,7 @@
 @window-modalblock-opacity:      0.3;
 @window-box-shadow:              0 3px 7px rgba(0, 0, 0, 0.3);
 @window-bg:                      #FFF;
-@window-title-font-size:         20px;
+@window-title-font-size:         2em;
 
 // Popover
 @popover-bg:                     @window-bg;
@@ -548,9 +548,9 @@ div.mce-fullscreen {
 	position: absolute;
 	right: 15px;
 	top: 9px;
-	font-size: 20px;
+	font-size: 2em;
 	font-weight: bold;
-	line-height: 20px;
+	line-height: 2em;
 	color: @window-head-close;
 	cursor: pointer;
 
@@ -564,7 +564,7 @@ div.mce-fullscreen {
 }
 
 .mce-window-head .mce-title {
-	line-height: 20px;
+	line-height: 2em;
 	font-size: @window-title-font-size;
 	font-weight: bold;
 	text-rendering: optimizelegibility;
@@ -849,7 +849,7 @@ body .mce-abs-layout-item, .mce-abs-end {
 
 .mce-btn-large button {
 	padding: 9px 14px;
-	font-size: @font-size + 2px;
+	font-size: @font-size + 0.14em;
 	line-height: normal;
 	.border-radius(5px);
 }
@@ -860,7 +860,7 @@ body .mce-abs-layout-item, .mce-abs-end {
 
 .mce-btn-small button {
 	padding: 1px 5px;
-	font-size: @font-size - 2px;
+	font-size: @font-size - 0.14em;
 	*padding-bottom: 2px;
 }
 
@@ -952,8 +952,8 @@ i.mce-i-checkbox {
 
 .mce-checked i.mce-i-checkbox {
 	color: @btn-text;
-	font-size: 16px;
-	line-height: 16px;
+	font-size: 1.14em;
+	line-height: 1.14em;
 	text-indent: 0;
 }
 
@@ -1678,21 +1678,21 @@ i.mce-i-resize {
 	font-style: normal;
 }
 
-@iconSize: 16px;
+@iconSize: 1.14em;
 
 .mce-ico {
 	font-family: 'tinymce', Arial;
 	font-style: normal;
 	font-weight: normal;
 	font-size: @iconSize;
-	line-height: 16px;
+	line-height: 1.14em;
 	vertical-align: text-top;
 	-webkit-font-smoothing: antialiased;
 
 	display: inline-block;
 	background: transparent center center;
-	width: 16px;
-	height: 16px;
+	width: 1.14em;
+	height: 1.14em;
 	color: @btn-text;
 }
 
