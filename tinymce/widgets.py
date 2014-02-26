@@ -19,7 +19,6 @@ except ImportError:
         from django.utils.encoding import smart_unicode
     except ImportError:
         from django.forms.util import smart_unicode
-from django.utils.html import escape
 from django.utils.datastructures import SortedDict
 from django.utils.safestring import mark_safe
 from django.utils.translation import get_language, ugettext as _
@@ -52,15 +51,17 @@ class TinyMCE(forms.Textarea):
         if content_language is None:
             content_language = mce_attrs.get('language', None)
         self.content_language = content_language
+        self.default_config = tinymce.settings.DEFAULT_CONFIG
 
     def render(self, name, value, attrs=None):
-        if value is None: value = ''
+        if value is None:
+            value = ''
         value = smart_unicode(value)
         final_attrs = self.build_attrs(attrs)
-        final_attrs['name'] = name
+        final_attrs['id'] = name
         assert 'id' in final_attrs, "TinyMCE widget attributes must contain 'id'"
 
-        mce_config = tinymce.settings.DEFAULT_CONFIG.copy()
+        mce_config = self.default_config.copy()
         mce_config.update(get_language_config(self.content_language))
         if tinymce.settings.USE_FILEBROWSER:
             mce_config['file_browser_callback'] = "djangoFileBrowser"
@@ -70,25 +71,23 @@ class TinyMCE(forms.Textarea):
         if mce_config['mode'] == 'exact':
             mce_config['elements'] = final_attrs['id']
         mce_config['strict_loading_mode'] = 1
-        
         # Fix for js functions
         js_functions = {}
-        for k in ('paste_preprocess','paste_postprocess'):
+        for k in ('paste_preprocess', 'paste_postprocess'):
             if k in mce_config:
-               js_functions[k] = mce_config[k]
-               del mce_config[k]
+                js_functions[k] = mce_config[k]
+                del mce_config[k]
         mce_json = json.dumps(mce_config)
 
         pos = final_attrs['id'].find('__prefix__')
+
         if pos != -1:
             mce_json = mce_json.replace(u'"%s"' % final_attrs['id'], u'elements')
-
         for k in js_functions:
             index = mce_json.rfind('}')
-            mce_json = mce_json[:index]+', '+k+':'+js_functions[k].strip()+mce_json[index:]
-            
+            mce_json = mce_json[:index] + ', ' + k + ':' + js_functions[k].strip() + mce_json[index:]
+        html = [u'<div%s>%s</div>' % (flatatt(final_attrs), value)]
 
-        html = [u'<textarea%s>%s</textarea>' % (flatatt(final_attrs), escape(value))]
         if tinymce.settings.USE_COMPRESSOR:
             compressor_config = {
                 'plugins': mce_config.get('plugins', ''),
@@ -99,16 +98,14 @@ class TinyMCE(forms.Textarea):
             }
             compressor_json = json.dumps(compressor_config)
             html.append(u'<script type="text/javascript">tinyMCE_GZ.init(%s)</script>' % compressor_json)
-            
         if pos != -1:
             html.append(u'''<script type="text/javascript">
 setTimeout(function () {
     var id = '%s';
-    
     if (typeof(window._tinymce_inited) == 'undefined') {
         window._tinymce_inited = [];
     }
-    
+
     if (typeof(window._tinymce_inited[id]) == 'undefined') {
         window._tinymce_inited[id] = true;
     } else {
@@ -137,7 +134,10 @@ setTimeout(function () {
 
 
 class AdminTinyMCE(admin_widgets.AdminTextareaWidget, TinyMCE):
-    pass
+
+    def __init__(self, *args, **kwargs):
+        super(AdminTinyMCE, self).__init__(*args, **kwargs)
+        self.default_config = tinymce.settings.OLD_ADMIN_CONFIG
 
 
 def get_language_config(content_language=None):
@@ -152,7 +152,8 @@ def get_language_config(content_language=None):
 
     lang_names = SortedDict()
     for lang, name in settings.LANGUAGES:
-        if lang[:2] not in lang_names: lang_names[lang[:2]] = []
+        if lang[:2] not in lang_names:
+            lang_names[lang[:2]] = []
         lang_names[lang[:2]].append(_(name))
     sp_langs = []
     for lang, names in lang_names.items():

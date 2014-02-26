@@ -1,4 +1,3 @@
-import os
 import warnings
 from django.conf import settings
 from django.contrib.staticfiles.storage import staticfiles_storage
@@ -7,6 +6,11 @@ OLD_CONFIG = getattr(settings, 'TINYMCE_DEFAULT_CONFIG', False)
 if OLD_CONFIG:
     warnings.warn("TINYMCE_DEFAULT_CONFIG is deprecated, check docs for instructions.", DeprecationWarning)
 DEFAULT_CONFIG = OLD_CONFIG or {'theme': "modern", 'relative_urls': False}
+
+OLD_ADMIN_CONFIG = getattr(settings, 'TINYMCE_DEFAULT_ADMIN_CONFIG', False)
+if OLD_ADMIN_CONFIG:
+    warnings.warn("TINYMCE_DEFAULT_ADMIN_CONFIG is deprecated, check docs for instructions.", DeprecationWarning)
+DEFAULT_ADMIN_CONFIG = OLD_ADMIN_CONFIG or DEFAULT_CONFIG
 
 if getattr(settings, 'TINYMCE_JS_URL', False):
     raise RuntimeError("TINYMCE_JS_URL is not supported anymore, check docs for instructions.")
