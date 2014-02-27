@@ -10,6 +10,9 @@ try:
 except ImportError:
     pass
 
+import tinymce.settings
+
+
 class HTMLField(models.TextField):
     """
     A large string field for HTML content. It uses the TinyMCE widget in
@@ -24,3 +27,19 @@ class HTMLField(models.TextField):
             defaults['widget'] = tinymce_widgets.AdminTinyMCE
 
         return super(HTMLField, self).formfield(**defaults)
+
+    def clean(self, *args, **kwargs):
+        cleaned_data = super(HTMLField, self).clean(*args, **kwargs)
+        if tinymce.settings.CLEAN_HTML:
+            cleaned_data = self.clean_html(cleaned_data)
+        return cleaned_data
+
+    def clean_html(self, html, prefix="<html><body>", sufix="</body></html>"):
+        from lxml.html.clean import Cleaner
+        if not html:
+            return ""
+        cleaner = Cleaner(**tinymce.settings.CLEAN_HTML)
+        # clean_html expect a parent node
+        cleaned_html = cleaner.clean_html(prefix + html + sufix)
+        # Remove the <html><body>
+        return cleaned_html[len(prefix): len(cleaned_html) - len(sufix)]

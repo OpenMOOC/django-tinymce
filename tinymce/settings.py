@@ -29,3 +29,21 @@ USE_COMPRESSOR = False
 if getattr(settings, 'TINYMCE_FILEBROWSER', False):
     raise RuntimeError("TINYMCE_FILEBROWSER is not supported anymore, check docs for instructions.")
 USE_FILEBROWSER = False
+
+CLEAN_HTML = getattr(settings, 'TINYMCE_CLEAN_HTML', False)
+
+#CLEAN_HTML = {
+    #'scripts': False,
+    #'javascript': False,
+    #'comments': False,
+    #'style': False,
+    #'links': False,
+    #'meta': False,
+    #'page_structure': False,
+    #'processing_instructions': False,
+    #'embedded': False,
+    #'frames': False,
+    #'forms': False,
+    #'annoying_tags': False,
+    #'remove_unknown_tags': False,
+    #'safe_attrs_only': False}
