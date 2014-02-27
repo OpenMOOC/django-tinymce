@@ -51,7 +51,7 @@ div.mce-fullscreen{position:fixed;top:0;left:0;}
 .mce-window{-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;-webkit-box-shadow:0 3px 7px rgba(0, 0, 0, 0.3);-moz-box-shadow:0 3px 7px rgba(0, 0, 0, 0.3);box-shadow:0 3px 7px rgba(0, 0, 0, 0.3);filter:progid:DXImageTransform.Microsoft.gradient(enabled = false);background:transparent;background:#ffffff;position:fixed;top:0;left:0;opacity:0;-webkit-transition:opacity 150ms ease-in;transition:opacity 150ms ease-in;}
 .mce-window.mce-in{opacity:1;}
 .mce-window-head{padding:9px 15px;border-bottom:1px solid #c5c5c5;position:relative;}
-.mce-window-head .mce-close{position:absolute;right:15px;top:9px;font-size:2em;font-weight:bold;line-height:2em;color:#858585;cursor:pointer;height:20px;overflow:hidden;}
+.mce-window-head .mce-close{position:absolute;right:15px;top:9px;font-size:1.4em;font-weight:bold;line-height:1.4em;color:#858585;cursor:pointer;height:20px;overflow:hidden;}
 .mce-close:hover{color:#adadad;}
 .mce-window-head .mce-title{line-height:2em;font-size:2em;font-weight:bold;text-rendering:optimizelegibility;padding-right:10px;}
 .mce-window .mce-container-body{display:block;}
